@@ -11,6 +11,7 @@
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
     "deploy:mainnet": "yarn deploy balancer-labs/gauges",
     "deploy:goerli": "yarn deploy balancer-labs/gauges-goerli",
+    "deploy:aurora-testnet": "yarn deploy polarisfinance/gauges-aurora-testnet",
     "codegen": "yarn generate-manifests && graph codegen subgraph.yaml --output-dir src/types/ && graph codegen subgraph.arbitrum.yaml --output-dir src/types/",
     "generate-manifests": "ts-node ./scripts/generate-manifests"
   },
