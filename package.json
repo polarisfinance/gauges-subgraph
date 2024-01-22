@@ -5,13 +5,14 @@
   "scripts": {
     "auth": "graph auth https://api.thegraph.com/deploy/",
     "lint": "eslint ./src",
-    "local:create": "graph create --node http://localhost:8020/ balancer-labs/gauges",
+    "local:create": "graph create --node http://192.248.184.109:8020 polarisfinance/gauges-testnet",
     "local:remove": "graph remove --node http://localhost:8020/ balancer-labs/gauges",
-    "local:deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 balancer-labs/gauges",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/",
+    "local:deploy": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 polarisfinance/gauges-testnet",
+    "deploy": "graph deploy polarisfinance/polaris-gauges",
     "deploy:mainnet": "yarn deploy balancer-labs/gauges",
     "deploy:goerli": "yarn deploy balancer-labs/gauges-goerli",
-    "deploy:aurora-testnet": "yarn deploy polarisfinance/gauges-aurora-testnet",
+    "deploy:aurora-testnet": "yarn deploy polarisfinance/gauges-testnet",
+    "deploy:aurora": "yarn deploy polarisfinance/polaris-gauges",
     "codegen": "yarn generate-manifests && graph codegen subgraph.yaml --output-dir src/types/ && graph codegen subgraph.arbitrum.yaml --output-dir src/types/",
     "generate-manifests": "ts-node ./scripts/generate-manifests"
   },

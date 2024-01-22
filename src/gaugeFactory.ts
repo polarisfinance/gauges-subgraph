@@ -11,7 +11,13 @@ import {
 } from './types/templates';
 import { getPoolEntity, getPoolId, isPoolRegistered } from './utils/misc';
 import { RewardsOnlyGaugeCreated } from './types/ChildChainLiquidityGaugeFactory/ChildChainLiquidityGaugeFactory';
-import { isArbitrumFactory, isGnosisFactory, isOptimismFactory, isPolygonFactory } from './utils/constants';
+import {
+  isArbitrumFactory,
+  isGnosisFactory,
+  isOptimismFactory,
+  isPolygonFactory,
+  isTelosFactory,
+} from './utils/constants';
 import { GaugeCreated as MainnetGaugeCreated } from './types/GaugeV2Factory/GaugeV2Factory';
 import { GaugeCreated as RootGaugeCreated } from './types/ArbitrumRootGaugeV2Factory/ArbitrumRootGaugeV2Factory';
 import { LiquidityGauge as LiquidityGaugeV2 } from './types/GaugeV2Factory/LiquidityGauge';
@@ -39,7 +45,10 @@ export function handleLiquidityGaugeCreated(event: MainnetGaugeCreated): void {
   const gaugeContract = LiquidityGaugeV2.bind(gaugeAddress);
   const lpTokenCall = gaugeContract.try_lp_token();
   if (lpTokenCall.reverted) {
-    log.warning('Call to lp_token() failed: {} {}', [gaugeAddress.toHexString(), event.transaction.hash.toHexString()]);
+    log.warning('Call to lp_token() failed: {} {}', [
+      gaugeAddress.toHexString(),
+      event.transaction.hash.toHexString(),
+    ]);
     return;
   }
 
@@ -62,7 +71,9 @@ export function handleLiquidityGaugeCreated(event: MainnetGaugeCreated): void {
   LiquidityGaugeTemplate.create(gaugeAddress);
 }
 
-export function handleRewardsOnlyGaugeCreated(event: RewardsOnlyGaugeCreated): void {
+export function handleRewardsOnlyGaugeCreated(
+  event: RewardsOnlyGaugeCreated,
+): void {
   let factory = getGaugeFactory(event.address);
   factory.numGauges += 1;
   factory.save();
@@ -116,6 +127,8 @@ export function handleRootGaugeCreated(event: RootGaugeCreated): void {
     gauge.chain = 'Polygon';
   } else if (isGnosisFactory(factoryAddress)) {
     gauge.chain = 'Gnosis';
+  } else if (isTelosFactory(factoryAddress)) {
+    gauge.chain = 'Telos';
   }
 
   gauge.save();

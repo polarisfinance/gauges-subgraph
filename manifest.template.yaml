@@ -234,6 +234,34 @@ dataSources:
         - event: GaugeCreated(indexed address)
           handler: handleRootGaugeCreated
   {{/if}}
+  {{#if telosRootGaugeV2Factory}}
+  - kind: ethereum/contract
+    name: TelosRootGaugeV2Factory
+    # prettier-ignore
+    network: {{network}}
+    source:
+      address: '{{telosRootGaugeV2Factory.address}}'
+      abi: TelosRootGaugeV2Factory
+      # prettier-ignore
+      startBlock: {{ telosRootGaugeV2Factory.startBlock }}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/gaugeFactory.ts
+      abis:
+        - name: LiquidityGauge
+          file: ./abis/LiquidityGaugeV2.json
+        - name: TelosRootGauge
+          file: ./abis/ArbitrumRootGauge.json # required for binding
+        - name: TelosRootGaugeV2Factory
+          file: ./abis/OptimismRootGaugeV2Factory.json # has the same GaugeCreated event
+      entities:
+        - RootGauge
+      eventHandlers:
+        - event: GaugeCreated(indexed address)
+          handler: handleRootGaugeCreated
+  {{/if}}
   {{#if gnosisRootGaugeV2Factory}}
   - kind: ethereum/contract
     name: GnosisRootGaugeV2Factory

@@ -14,8 +14,8 @@ export class AddressByNetwork {
 let network: string = dataSource.network();
 
 let controllerAddressByNetwork: AddressByNetwork = {
-  mainnet: '0x6a7E068Fe310531dd82c1EC26897fEe6F78dED5f',
-  goerli: '0xBB1CE49b16d55A1f2c6e88102f32144C7334B116',
+  mainnet: '`0xBF9b6174960DF88510eBEcB07ECCC2d6571Ee78B`',
+  goerli: '`0xBF9b6174960DF88510eBEcB07ECCC2d6571Ee78B`',
 };
 
 function forNetwork(
@@ -29,10 +29,10 @@ function forNetwork(
 }
 
 export const CONTROLLER_ADDRESS = Address.fromString(
-  '0x6a7E068Fe310531dd82c1EC26897fEe6F78dED5f',
+  '0x31eCA9385Fa44e0f8D83322F79937943216Df7c5',
 );
 export const VAULT_ADDRESS = Address.fromString(
-  '0x3F39DDE7BF3e17Db8F7D56942B1A2C2880C2e622',
+  '0x6985436a0E5247A3E1dc29cdA9e1D89C5b59e26b',
 );
 
 export const ARBITRUM_ROOT_GAUGE_FACTORY = Address.fromString(
@@ -46,7 +46,7 @@ export const POLYGON_ROOT_GAUGE_FACTORY = Address.fromString(
 );
 
 export const MAINNET_GAUGE_V2_FACTORY = Address.fromString(
-  '0xf1665E19bc105BE4EDD3739F88315cC699cc5b65',
+  '0x80C296469a1ffFfB6547A8570927864708b86303',
 );
 export const ARBITRUM_ROOT_GAUGE_V2_FACTORY = Address.fromString(
   '0x1c99324EDC771c82A0DCCB780CC7DDA0045E50e7',
@@ -59,6 +59,10 @@ export const OPTIMISM_ROOT_GAUGE_V2_FACTORY = Address.fromString(
 );
 export const POLYGON_ROOT_GAUGE_V2_FACTORY = Address.fromString(
   '0xa98Bce70c92aD2ef3288dbcd659bC0d6b62f8F13',
+);
+
+export const TELOS_ROOT_GAUGE_V2_FACTORY = Address.fromString(
+  '0x15A6B1177a18Ad973B9dfdb1f9E761458d46bE6f',
 );
 
 export function isArbitrumFactory(factory: Address): boolean {
@@ -81,4 +85,8 @@ export function isPolygonFactory(factory: Address): boolean {
 
 export function isGnosisFactory(factory: Address): boolean {
   return factory == GNOSIS_ROOT_GAUGE_V2_FACTORY;
+}
+
+export function isTelosFactory(factory: Address): boolean {
+  return factory == TELOS_ROOT_GAUGE_V2_FACTORY;
 }
