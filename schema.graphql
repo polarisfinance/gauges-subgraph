@@ -2,11 +2,40 @@ type VotingEscrow @entity {
   " VotingEscrow contract address "
   id: ID!
 
-  " Amount of B-80BAL-20WETH BPT locked "
-  stakedSupply: BigDecimal!
+  " Amount of B-80BAL-20WETH BPT locked, only applies on mainnet "
+  stakedSupply: BigDecimal
 
   " List of veBAL locks created "
   locks: [VotingEscrowLock!] @derivedFrom(field: "votingEscrowID")
+
+  " List of veBAL locks created "
+  omniLocks: [OmniVotingEscrowLock!] @derivedFrom(field: "votingEscrowID")
+}
+
+type OmniVotingEscrowLock @entity {
+  " Equal to: <userAdress>-<omniVotingEscrow> "
+  id: ID!
+
+  " User on the local chain (reference to User entity) "
+  localUser: User!
+
+  " User address on the remote chain "
+  remoteUser: Bytes!
+
+  " Chain where the lock was bridged to "
+  dstChainId: Int!
+
+  " veBAL balance at the moment user locks "
+  bias: BigDecimal!
+
+  " veBAL decay rate (per second) "
+  slope: BigDecimal!
+
+  " Timestamp the lock was created [seconds] "
+  timestamp: Int!
+
+  " Reference to VotingEscrow entity "
+  votingEscrowID: VotingEscrow!
 }
 
 type VotingEscrowLock @entity {
@@ -16,15 +45,43 @@ type VotingEscrowLock @entity {
   " Reference to User entity "
   user: User!
 
+  " veBAL balance at the moment user locks "
+  bias: BigDecimal!
+
+  " veBAL decay rate (per second) "
+  slope: BigDecimal!
+
+  " Timestamp at which the lock was created [seconds] "
+  timestamp: Int!
+
   " Timestamp at which B-80BAL-20WETH BPT can be unlocked by user [seconds] "
-  unlockTime: BigInt
+  unlockTime: BigInt!
 
   " Amount of B-80BAL-20WETH BPT the user has locked "
   lockedBalance: BigDecimal!
 
   " Reference to VotingEscrow entity "
   votingEscrowID: VotingEscrow!
+
+  " Timestamp at which the lcok was created [seconds]. Same as timestamp "
   updatedAt: Int!
+}
+
+type LockSnapshot @entity {
+  " Equal to <userAddress>-<timestamp> "
+  id: ID!
+
+  " Reference to User entity "
+  user: User!
+
+  " veBAL balance at the moment user locks "
+  bias: BigDecimal!
+
+  " veBAL decay rate (per second) "
+  slope: BigDecimal!
+
+  " Timestamp at which the snapshot was taken [seconds] "
+  timestamp: Int!
 }
 
 type GaugeFactory @entity {
@@ -75,6 +132,9 @@ type LiquidityGauge @entity {
   " Total of BPTs users have staked in the LiquidityGauge "
   totalSupply: BigDecimal!
 
+  " List of reward tokens depositted in the gauge - ChildChainLiquidityGauge only "
+  rewardTokensList: [Bytes!]
+
   " List of user shares "
   shares: [GaugeShare!] @derivedFrom(field: "gauge")
 
@@ -87,6 +147,9 @@ enum Chain {
   Gnosis
   Polygon
   Optimism
+  Avalanche
+  PolygonZkEvm
+  Base
 }
 
 type RootGauge @entity {
@@ -100,6 +163,26 @@ type RootGauge @entity {
   recipient: Bytes!
 
   " Reference to Gauge entity - created when LiquidityGauge is added to GaugeController"
+  gauge: Gauge
+
+  " Whether Balancer DAO killed the gauge "
+  isKilled: Boolean!
+
+  " Relative weight cap of the gauge (0.01 = 1%) - V2 factories only "
+  relativeWeightCap: BigDecimal
+
+  " Factory contract address "
+  factory: GaugeFactory!
+}
+
+type SingleRecipientGauge @entity {
+  " SingleRecipientGauge contract address"
+  id: ID!
+
+  " Address where emissions for this gauge will be sent to "
+  recipient: Bytes!
+
+  " Reference to Gauge entity - created when SingleRecipientGauge is added to GaugeController"
   gauge: Gauge
 
   " Whether Balancer DAO killed the gauge "
@@ -226,4 +309,12 @@ type User @entity {
 
   " List of locks the user created "
   votingLocks: [VotingEscrowLock!] @derivedFrom(field: "user")
+
+  " List of omni locks the user created "
+  omniVotingLocks: [OmniVotingEscrowLock!] @derivedFrom(field: "localUser")
+}
+
+type GaugeInjector @entity {
+  " GaugeInjector contract address "
+  id: ID!
 }
