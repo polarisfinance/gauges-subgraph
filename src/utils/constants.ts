@@ -12,6 +12,7 @@ export class AddressByNetwork {
   public mainnet: string;
   public sepolia: string;
   public goerli: string;
+  public aurora: string;
 }
 
 let network: string = dataSource.network();
@@ -20,6 +21,7 @@ let controllerAddressByNetwork: AddressByNetwork = {
   mainnet: '0xC128468b7Ce63eA702C1f104D55A2566b13D3ABD',
   sepolia: '0x577e5993B9Cc480F07F98B5Ebd055604bd9071C4',
   goerli: '0xBB1CE49b16d55A1f2c6e88102f32144C7334B116',
+  aurora: '0x31eCA9385Fa44e0f8D83322F79937943216Df7c5',
 };
 
 function forNetwork(
@@ -30,6 +32,8 @@ function forNetwork(
     return Address.fromString(addressByNetwork.mainnet);
   } else if (network == 'sepolia') {
     return Address.fromString(addressByNetwork.sepolia);
+  } else if (network == 'aurora') {
+    return Address.fromString(addressByNetwork.aurora);
   }
   return Address.fromString(addressByNetwork.goerli);
 }
@@ -39,7 +43,7 @@ export const CONTROLLER_ADDRESS = forNetwork(
   network,
 );
 export const VAULT_ADDRESS = Address.fromString(
-  '0xBA12222222228d8Ba445958a75a0704d566BF2C8',
+  '0x6985436a0E5247A3E1dc29cdA9e1D89C5b59e26b',
 );
 
 export const ARBITRUM_ROOT_GAUGE_FACTORY = Address.fromString(
@@ -89,6 +93,13 @@ export const POLYGON_ZKEVM_ROOT_GAUGE_V2_FACTORY = Address.fromString(
   '0x9bF951848288cCD87d06FaC426150262cD3447De',
 );
 
+export const AURORA_ROOT_GAUGE_V2_FACTORY = Address.fromString(
+  '0x80C296469a1ffFfB6547A8570927864708b86303',
+);
+export const TELOS_ROOT_GAUGE_V2_FACTORY = Address.fromString(
+  '0x15A6B1177a18Ad973B9dfdb1f9E761458d46bE6f',
+);
+
 export function isArbitrumFactory(factory: Address): boolean {
   return [ARBITRUM_ROOT_GAUGE_FACTORY, ARBITRUM_ROOT_GAUGE_V2_FACTORY].includes(
     factory,
@@ -105,11 +116,16 @@ export function isGoerliFactory(factory: Address): boolean {
 export function isSepoliaFactory(factory: Address): boolean {
   return factory == SEPOLIA_GAUGE_V2_FACTORY;
 }
+
+export function isAuroraFactory(factory: Address): boolean {
+  return factory == AURORA_ROOT_GAUGE_V2_FACTORY;
+}
 export function isL1Factory(factory: Address): boolean {
   return (
     isMainnetFactory(factory) ||
     isGoerliFactory(factory) ||
-    isSepoliaFactory(factory)
+    isSepoliaFactory(factory) ||
+    isAuroraFactory(factory)
   );
 }
 
@@ -139,4 +155,8 @@ export function isPolygonZkEVMFactory(factory: Address): boolean {
 
 export function isBaseFactory(factory: Address): boolean {
   return factory == BASE_ROOT_GAUGE_V2_FACTORY;
+}
+
+export function isTelosFactory(factory: Address): boolean {
+  return factory == TELOS_ROOT_GAUGE_V2_FACTORY;
 }

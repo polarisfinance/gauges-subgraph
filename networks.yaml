@@ -186,7 +186,7 @@ gnosis:
 
 telos:
   network: telos
-  childChainGaugeFactory:
+  childChainGaugeV2Factory:
     address: '0xCd89DE952EE7777E5b4F95E1D7CADbCc06f9e2aF'
     transactionHash: '0xb84d176bf5747deff7cb4fddf5531a83211b67c6eb8d7cda7e1f81783492be09'
     startBlock: 321830548
@@ -211,6 +211,7 @@ aurora-testnet:
     startBlock: 126098558
 aurora:
   network: aurora
+
   # gaugeFactory:
   #   address: '0x8c7f61A0347b683b487fFdE975EC88F788275Bae'
   #   transactionHash: '0x9ee9bae1f843735c73fd6a8e469cc8ed41c9db4b3da14edfe78aedf0ca4b7dc5'
@@ -218,16 +219,16 @@ aurora:
   gaugeV2Factory:
     address: '0x80C296469a1ffFfB6547A8570927864708b86303'
     transactionHash: '0x21fe921c1ca18f0b733ef075813d638c3f45813d67aae9c0a13a17f6318d88aa'
-    startBlock: 92309226
+    startBlock: 92309225
   gaugeController:
     address: '0x31eCA9385Fa44e0f8D83322F79937943216Df7c5'
     transactionHash: '0x5360f2482a7d885804a9b3307a72a538ace1eb643de16c56cafe0ecd698ca1a1'
-    startBlock: 92308611
+    startBlock: 92308610
   votingEscrow:
     address: '0xBe96730583b46140210efA92AC6039EF11247657'
     transactionHash: '0xbef01fef54b91eaa47162f69deac76d1b776d35ba7f481eb9ae3c4b34e18a75b'
-    startBlock: 92308601
+    startBlock: 92308600
   telosRootGaugeV2Factory:
     address: '0x15A6B1177a18Ad973B9dfdb1f9E761458d46bE6f'
     transactionHash: '0xa7f1e80b28027fda669a8a664ccea775d49df9b99255968b7928a9e4272294d3'
-    startBlock: 110178228
+    startBlock: 110178227

@@ -339,7 +339,7 @@ dataSources:
       abis:
         - name: LiquidityGauge
           file: ./abis/LiquidityGaugeV2.json
-        - name: TelosRootGauge
+        - name: ArbitrumRootGauge
           file: ./abis/ArbitrumRootGauge.json # required for binding
         - name: TelosRootGaugeV2Factory
           file: ./abis/OptimismRootGaugeV2Factory.json # has the same GaugeCreated event
