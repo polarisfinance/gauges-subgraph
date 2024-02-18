@@ -229,6 +229,7 @@ aurora:
     transactionHash: '0xbef01fef54b91eaa47162f69deac76d1b776d35ba7f481eb9ae3c4b34e18a75b'
     startBlock: 92308600
   telosRootGaugeV2Factory:
-    address: '0x15A6B1177a18Ad973B9dfdb1f9E761458d46bE6f'
-    transactionHash: '0xa7f1e80b28027fda669a8a664ccea775d49df9b99255968b7928a9e4272294d3'
-    startBlock: 110178227
+    address: '0x0A3ab81cc3A52DB9E68713e28F9cA27a4Fd9163e'
+    transactionHash: '0xb5e05cc343c6bc21afdf31b7568565bc2fdc827d7b3c96ca4b64a01a5f2ee24b'
+    startBlock: 112635194
+

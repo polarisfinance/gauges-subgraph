@@ -97,7 +97,7 @@ export const AURORA_ROOT_GAUGE_V2_FACTORY = Address.fromString(
   '0x80C296469a1ffFfB6547A8570927864708b86303',
 );
 export const TELOS_ROOT_GAUGE_V2_FACTORY = Address.fromString(
-  '0x15A6B1177a18Ad973B9dfdb1f9E761458d46bE6f',
+  '0x0A3ab81cc3A52DB9E68713e28F9cA27a4Fd9163e',
 );
 
 export function isArbitrumFactory(factory: Address): boolean {
