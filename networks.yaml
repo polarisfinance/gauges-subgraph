@@ -186,10 +186,24 @@ gnosis:
 
 telos:
   network: telos
+  EventEmitter:
+    address: "0xD27d1437a2f425DdE6E6b3908A35891e08303852"
+    startBlock: 327477501
   childChainGaugeV2Factory:
     address: '0xCd89DE952EE7777E5b4F95E1D7CADbCc06f9e2aF'
     transactionHash: '0xb84d176bf5747deff7cb4fddf5531a83211b67c6eb8d7cda7e1f81783492be09'
     startBlock: 321830548
+
+taiko:
+  network: taiko
+  # EventEmitter:
+  #   address: "0xD27d1437a2f425DdE6E6b3908A35891e08303852"
+  #   startBlock: 327477501
+  childChainGaugeV2Factory:
+    address: '0xB136dFCC309815D5AA4b5C1382927042b4d1d421'
+    startBlock: 385252
+
+
 
 aurora-testnet:
   network: aurora-testnet
@@ -232,4 +246,10 @@ aurora:
     address: '0x0A3ab81cc3A52DB9E68713e28F9cA27a4Fd9163e'
     transactionHash: '0xb5e05cc343c6bc21afdf31b7568565bc2fdc827d7b3c96ca4b64a01a5f2ee24b'
     startBlock: 112635194
+  taikoRootGaugeV2Factory:
+    address: '0x5Fe5fdBbDba4fAa30Ff54BDC7912D0886E50a28f'
+    transactionHash: '0x7c7b367f5ce83f4930f0e823ba592e68b795e02d48232c154a222a6898b85fcc'
+    startBlock: 128149229
+
+
 

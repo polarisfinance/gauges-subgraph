@@ -21,6 +21,7 @@ import {
   isPolygonFactory,
   isPolygonZkEVMFactory,
   isTelosFactory,
+  isTaikoFactory,
 } from './utils/constants';
 import { GaugeCreated as LiquidityGaugeCreated } from './types/GaugeV2Factory/GaugeV2Factory';
 import { GaugeCreated as RootGaugeCreated } from './types/ArbitrumRootGaugeV2Factory/ArbitrumRootGaugeV2Factory';
@@ -196,6 +197,8 @@ export function handleRootGaugeCreated(event: RootGaugeCreated): void {
     gauge.chain = 'Base';
   } else if (isTelosFactory(factoryAddress)) {
     gauge.chain = 'Telos';
+  } else if (isTaikoFactory(factoryAddress)) {
+    gauge.chain = 'Taiko';
   }
 
   gauge.save();

@@ -99,6 +99,9 @@ export const AURORA_ROOT_GAUGE_V2_FACTORY = Address.fromString(
 export const TELOS_ROOT_GAUGE_V2_FACTORY = Address.fromString(
   '0x0A3ab81cc3A52DB9E68713e28F9cA27a4Fd9163e',
 );
+export const TAIKO_ROOT_GAUGE_V2_FACTORY = Address.fromString(
+  '0x5Fe5fdBbDba4fAa30Ff54BDC7912D0886E50a28f',
+);
 
 export function isArbitrumFactory(factory: Address): boolean {
   return [ARBITRUM_ROOT_GAUGE_FACTORY, ARBITRUM_ROOT_GAUGE_V2_FACTORY].includes(
@@ -159,4 +162,8 @@ export function isBaseFactory(factory: Address): boolean {
 
 export function isTelosFactory(factory: Address): boolean {
   return factory == TELOS_ROOT_GAUGE_V2_FACTORY;
+}
+
+export function isTaikoFactory(factory: Address): boolean {
+  return factory == TAIKO_ROOT_GAUGE_V2_FACTORY;
 }

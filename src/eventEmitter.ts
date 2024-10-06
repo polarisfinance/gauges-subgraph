@@ -43,6 +43,7 @@ function setGaugeRewardsData(event: LogArgument): void {
 
   const rewardTokens = gauge.rewardTokensList;
   if (!rewardTokens) return;
+  gauge.
 
   for (let i: i32 = 0; i < rewardTokens.length; i++) {
     setRewardData(
